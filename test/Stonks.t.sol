@@ -12,23 +12,29 @@ contract StonksTest is Test {
         stonks = new Stonks(player);
     }
 
-    // function test_CheckStonksInAccount() external {
-    //     uint256 tesla = stonks.balanceOf(player, 0);
-    //     uint256 gme = stonks.balanceOf(player, 1);
+    function test_CheckStonksInAccount() external {
+        uint256 tesla = stonks.balanceOf(player, 0);
+        uint256 gme = stonks.balanceOf(player, 1);
 
-    //     assertEq(tesla, 20);
-    //     assertEq(gme, 1_000);
-    // }
+        assertEq(tesla, 20);
+        assertEq(gme, 1_000);
+    }
 
-    // function test_TakeOutEverything() external {
-    //     vm.startPrank(player);
-    //     stonks.buyTSLA(1_000, 20);
-    //     stonks.sellTSLA(41, 2_050);
-    //     vm.stopPrank();
+    function test_TakeOutEverything() external {
+        vm.startPrank(player);
+        stonks.sellTSLA(20, 1_000);
+        for(uint256 i; i < 50;) {
+            stonks.buyTSLA(40, 0);
+            unchecked {
+                i++;
+            }
+        }
+        vm.stopPrank();
 
-    //     uint256 tesla = stonks.balanceOf(player, 0);
-    //     uint256 gme = stonks.balanceOf(player, 1);
-    //     assertEq(tesla, 0);
-    //     assertEq(gme, 2_050);
-    // }
+        uint256 tesla = stonks.balanceOf(player, 0);
+        uint256 gme = stonks.balanceOf(player, 1);
+        console.log(tesla);
+        assertEq(tesla, 0);
+        assertEq(gme, 0);
+    }
 }
