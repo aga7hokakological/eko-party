@@ -4,6 +4,6 @@ out = 'out'
 libs = ['lib']
 
 [etherscan]
-polygon = { key = "${DDZRF9Q442B5JGIHMW68RAQ7HV75PMAR8J}" }
+polygon = { key = "${}" }
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
